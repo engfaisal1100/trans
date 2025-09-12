@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>سوقلي — الصفحة الرئيسية</title>
+
+  <!-- Google Font Tajawal -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --main:#009688;
+      --main-dark:#00796b;
+      --muted:#777;
+      --card-border:#e6e6e6;
+    }
+    html,body{
+      font-family: "Tajawal", sans-serif;
+      background:#f8f9fa;
+      color:#222;
+    }
+
+    /* Navbar */
+    .navbar{
+      padding:0.9rem 0;
+      background:#fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .navbar-brand{
+      color:var(--main) !important;
+      font-weight:700;
+      font-size:1.25rem;
+    }
+    .nav-link{
+      color:#444 !important;
+      font-weight:500;
+      padding:0.5rem 0.9rem;
+    }
+    .nav-link:hover{ color:var(--main) !important; }
+
+    /* login button */
+    .btn-login{
+      background:var(--main);
+      color:#fff;
+      border:none;
+      border-radius:6px;
+      padding:0.45rem 1rem;
+      display:flex;
+      align-items:center;
+      gap:0.5rem;
+      transition:background .18s, transform .12s;
+    }
+    .btn-login:hover{ background:var(--main-dark); transform:translateY(-2px); }
+
+    /* user placeholder */
+    .user-info { color:#333; display:flex; align-items:center; gap:0.5rem; font-weight:500; }
+    .user-info i { color:var(--main); font-size:1.25rem; }
+
+    /* Hero */
+    .hero-section {
+      background:#f6faf9;
+      text-align:center;
+      padding:3.5rem 1rem;
+      margin-bottom:1rem;
+    }
+    .hero-section h1{ color:var(--main); font-weight:800; margin-bottom:.5rem }
+    .hero-section p{ color:#555; margin-bottom:1rem }
+
+    .btn-main{
+      background:var(--main);
+      color:#fff;
+      border-radius:8px;
+      border:none;
+      padding:.55rem 1.1rem;
+    }
+    .btn-main:hover{ background:var(--main-dark); }
+
+    /* Categories */
+    .container-sections{ max-width:1200px; margin:0 auto; padding:1rem; }
+    .category-section{
+      background:#fff;
+      border:1px solid var(--card-border);
+      border-radius:12px;
+      padding:1.25rem;
+      margin-bottom:1.25rem;
+    }
+    .category-header{ display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:1rem; border-bottom:1px solid #f0f0f0; padding-bottom:.75rem; }
+    .category-header h5{ margin:0; display:flex; align-items:center; gap:.5rem; font-weight:700; color:#222; }
+    .category-header i{ font-size:1.25rem; color:#666; }
+
+    /* cards layout */
+    .category-content{
+      display:flex;
+      flex-wrap:wrap;
+      gap:1rem;
+      justify-content:flex-start;
+      align-items:flex-start;
+      padding-top:.25rem;
+    }
+
+    .category-card{
+      background:#fff;
+      border:1px solid #e9e9e9;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(10,10,10,0.03);
+      width:320px;           /* same width for all */
+      display:flex;
+      flex-direction:column;
+      gap:.6rem;
+      padding:12px;
+      box-sizing:border-box;
+    }
+    .category-card img{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      border-radius:8px;
+    }
+    .category-card h5{ margin:0; font-size:1.05rem; font-weight:700; color:#222; }
+    .category-card p{ margin:0; color:var(--muted); font-size:.95rem; min-height:36px; }
+
+    .price-views{ display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:4px; }
+    .price-views .price{ color:var(--main); font-weight:700; font-size:1rem; }
+    .price-views .views{ color:#777; font-size:.78rem; display:flex; align-items:center; gap:.35rem; }
+    .price-views .views i{ color:var(--main); font-size:1rem; }
+
+    .category-card .btn-main{ width:100%; margin-top:.5rem; padding:.6rem; }
+
+    /* card hover */
+    .category-card:hover{ transform:translateY(-6px); transition:transform .22s, box-shadow .22s; box-shadow:0 14px 40px rgba(0,0,0,0.06); }
+
+    /* 'no content' special card (centered) */
+    .no-content-card{
+      background:#fbfbfb;
+      border-radius:12px;
+      border:2px dashed var(--main);
+      padding:1.5rem;
+      text-align:center;
+      max-width:460px;
+      width:100%;
+      margin:0 auto;
+      color:#444;
+    }
+    .no-content-card i{ font-size:42px; color:var(--main); margin-bottom:.6rem; }
+    .no-content-card h5{ margin-bottom:.35rem; font-weight:700; }
+    .no-content-card p{ margin-bottom:.8rem; color:#666; }
+
+    /* Ads Section */
+    .ads-section{
+      background:var(--main);
+      color:#fff;
+      border-radius:16px;
+      padding:3.2rem 1.5rem;
+      text-align:center;
+      margin:2rem 0;
+    }
+    .ads-section .btn{ border-radius:12px; padding:.65rem 1.1rem; }
+    .ads-section a.btn-outline-light{ border-radius:12px; padding:.65rem 1.1rem; }
+
+    /* Footer */
+    footer{ background:#fff; margin-top:1.5rem; padding:1.6rem 0; border-top:1px solid #eef0f0; }
+    .footer-section h6{ font-weight:700; margin-bottom:.7rem; }
+    .footer-section p, .footer-section li { color:#444; font-size:.95rem; }
+    .footer-section ul{ list-style:none; padding-left:0; }
+    .footer-section ul li{ margin-bottom:.4rem; }
+
+    /* Responsiveness */
+    @media (max-width: 1100px){
+      .category-card{ width:300px; }
+    }
+    @media (max-width: 860px){
+      .category-card{ width:46%; }
+    }
+    @media (max-width: 640px){
+      .category-card{ width:100%; }
+      .category-content{ justify-content:center; }
+      .navbar-nav{ text-align:right; }
+    }
+      
+      .payment-card {
+  cursor: pointer;
+  border: 2px solid #eee;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+.payment-card:hover {
+  border-color: #009688;
+  transform: scale(1.05);
+}
+.account-number {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+      #transferModal .modal-content {
+  border: 2px solid #009688;
+  border-radius: 12px;
+}
+
+.site-logo {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 50%;        /* دائري */
+  border: 2px solid #009688; /* إطار أنيق */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* ظل خفيف */
+  background-color: #fff;    /* خلفية ناعمة */
+  padding: 3px;              /* مسافة بسيطة داخلية */
+}
+
+.site-name {
+  font-size: 1.3rem;
+  color: #009688;  /* لون مميز متناسق مع الإطار */
+}
+
+.price-views {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.like-btn {
+  cursor: pointer;
+  font-size: 1.4rem;
+  color: #999; /* لون افتراضي */
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.like-btn.liked {
+  color: #e63946; /* لون القلب عند الإعجاب */
+  transform: scale(1.2);
+}
+
+      
+.social-sidebar {
+  position: fixed;
+  top: 60%;
+  left: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  z-index: 9999;
+}
+
+.social-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+/* ألوان ثابتة لكل منصة */
+.whatsapp { background: #25D366; }
+.email    { background: #0072C6; }
+.sms      { background: #FF9800; }
+.telegram { background: #0088cc; }
+
+.social-icon:hover {
+  transform: scale(1.2) rotate(10deg);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+ /* Additional Sections: Recently Added, Packages, FAQ, Reviews */
+    .filter-search {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .filter-search input, .filter-search select {
+      padding: .5rem 1rem;
+      border-radius: 8px;
+      border:1px solid #ccc;
+      flex:1;
+      min-width: 180px;
+    }
+    .section-subcategories {
+      margin-bottom: 1rem;
+    }
+    .section-subcategories button {
+      margin-right: 5px;
+      margin-bottom: 5px;
+      background: var(--main);
+      color:#fff;
+      border:none;
+      border-radius: 20px;
+      padding: .35rem .8rem;
+      cursor:pointer;
+    }
+    .section-subcategories button:hover {
+      background: var(--main-dark);
+    }
+    .faq-item {
+      border-bottom:1px solid #eaeaea;
+      padding: .75rem 0;
+    }
+    .review-card {
+      border:1px solid #e9e9e9;
+      border-radius:12px;
+      padding:1rem;
+      margin-bottom:1rem;
+      background:#fff;
+    }
+      
+      /* شاشة التحميل */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff; /* خلفية بيضاء */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* اللوقو */
+.preloader-logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 20px;
+  object-fit: cover;
+  animation: pulse 1.5s infinite;
+}
+
+/* أنيميشن نبض */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* عند انتهاء التحميل */
+#preloader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+  </style>
+</head>
+<body>
+
+<!-- شاشة التحميل -->
+<div id="preloader">
+  <img src="logo-souqli.jpg" alt="شوقلي" class="preloader-logo">
+</div>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+  <div class="container container-sections">
+    
+   <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <!-- اللوقو -->
+      <img src="logo-souqli.jpg" alt="شوقلي" width="50" height="50" 
+           class="ms-2 rounded-circle" style="object-fit: cover;">
+      <span>سوقلي</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#">المتاجر الإلكترونية</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">المواقع الإلكترونية</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">حسابات التواصل الاجتماعي</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">إعلانات خاصة</a></li>
+      </ul>
+
+      <div class="d-flex align-items-center gap-3">
+        <!-- عند تسجيل الدخول استبدل زر الدخول بهذا العنصر -->
+        <div class="user-info">
+          <i class="bi bi-person-circle"></i>
+          <span>اسم المستخدم</span>
+        </div>
+
+        <!-- زر تسجيل الدخول يفتح الـ modal -->
+        <button class="btn-login" data-bs-toggle="modal" data-bs-target="#loginModal">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>تسجيل الدخول</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <!-- HERO -->
+<section class="hero-section">
+  <div class="container container-sections text-center">
+    <h1>مرحباً بك في سوقلي</h1>
+    <p>منصتك الشاملة لاكتشاف أفضل المتاجر والمواقع وحسابات التواصل الاجتماعي والإعلانات المميزة</p>
+    <div class="d-flex justify-content-center gap-2">
+      <button class="btn-main">استكشف المتاجر</button>
+      <!-- زر إضافة إعلان -->
+      <button id="heroAddAdBtn" class="btn btn-outline-success">أضف إعلانك</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- Recently Added Section -->
+<section class="container-sections mb-4">
+  <div class="category-section">
+    <div class="category-header">
+      <h5><i class="bi bi-clock-history"></i> المضاف مؤخراً</h5>
+      <div class="filter-search">
+        <input type="text" id="searchInput" placeholder="بحث بالاسم...">
+        <select id="categoryFilter">
+          <option value="all">كل الفئات</option>
+          <option value="متاجر">متاجر</option>
+          <option value="مواقع">مواقع</option>
+          <option value="حسابات">حسابات</option>
+          <option value="اعلانات">اعلانات</option>
+        </select>
+      </div>
+    </div>
+    <div class="category-content" id="recentContent">
+      <!-- سيتم تعبئة المحتوى عبر JS -->
+    </div>
+  </div>
+</section>
+
+  <!-- Content (categories) -->
+  <main class="container-sections">
+
+    <!-- المتاجر الإلكترونية -->
+    <div class="category-section">
+      <div class="category-header">
+        <h5><i class="bi bi-shop"></i> المتاجر الإلكترونية</h5>
+        <button class="btn btn-main btn-sm">+ أضف متجرك</button>
+      </div>
+
+      <div class="category-content">
+        <!--
+        <div class="col-md-6 category-card no-content-card text-center">
+          <i class="bi bi-shop"></i>
+          <h5>المتاجر الإلكترونية</h5>
+          <p>لا توجد متاجر معتمدة حالياً</p>
+          <button class="btn btn-main">+ أضف متجرك الآن</button>
+        </div>
+        -->
+
+        <div class="category-card">
+          <img src="store1.png" alt="متجر الإلكترونيات">
+          <h5>متجر الإلكترونيات</h5>
+          <p>أفضل الأجهزة الإلكترونية بأفضل الأسعار وجودة مضمونة.</p>
+          <div class="price-views">
+              <!-- زر الإعجاب -->
+    <span class="like-btn"><i class="bi bi-heart"></i></span>
+            <span class="views"><i class="bi bi-eye"></i> 3,450</span>
+          </div>
+          <button class="btn-main">زيارة المتجر</button>
+        </div>
+
+        <div class="category-card">
+          <img src="store2.png" alt="متجر الملابس">
+          <h5>متجر الملابس</h5>
+          <p>أحدث صيحات الموضة للرجال والنساء والأطفال.</p>
+          <div class="price-views">
+             <!-- زر الإعجاب -->
+    <span class="like-btn"><i class="bi bi-heart"></i></span>
+            <span class="views"><i class="bi bi-eye"></i> 2,120</span>
+          </div>
+          <button class="btn-main">زيارة المتجر</button>
+        </div>
+
+        <div class="category-card">
+          <img src="store3.png" alt="متجر الأدوات المنزلية">
+          <h5>متجر الأدوات المنزلية</h5>
+          <p>منتجات منزلية عالية الجودة لتسهيل حياتك اليومية.</p>
+          <div class="price-views">
+              <!-- زر الإعجاب -->
+    <span class="like-btn"><i class="bi bi-heart"></i></span>
+            <span class="views"><i class="bi bi-eye"></i> 1,890</span>
+          </div>
+          <button class="btn-main">زيارة المتجر</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- المواقع الإلكترونية -->
+    <div class="category-section">
+      <div class="category-header">
+        <h5><i class="bi bi-globe"></i> المواقع الإلكترونية</h5>
+        <button class="btn btn-main btn-sm">+ أضف موقعك</button>
+      </div>
+
+      <div class="category-content">
+        <!--
+        <div class="col-md-6 category-card no-content-card text-center">
+          <i class="bi bi-globe"></i>
+          <h5>المواقع الإلكترونية</h5>
+          <p>لا توجد مواقع معتمدة حالياً</p>
+          <button class="btn btn-main">+ أضف موقعك الآن</button>
+        </div>
+        -->
+
+        <div class="category-card">
+          <img src="website1.png" alt="موقع الإلكترونيات">
+          <h5>موقع الإلكترونيات</h5>
+          <p>بوابة إلكترونية تجمع أفضل المتاجر والأجهزة.</p>
+          <div class="price-views">
+             <!-- زر الإعجاب -->
+    <span class="like-btn"><i class="bi bi-heart"></i></span>
+            <span class="views"><i class="bi bi-eye"></i> 1,250</span>
+          </div>
+          <button class="btn-main">زيارة الموقع</button>
+        </div>
+
+        <div class="category-card">
+          <img src="website2.png" alt="موقع الملابس">
+          <h5>موقع الملابس</h5>
+          <p>مجتمع لمتابعة أحدث صيحات الموضة والعروض.</p>
+          <div class="price-views">
+             <!-- زر الإعجاب -->
+    <span class="like-btn"><i class="bi bi-heart"></i></span>
+            <span class="views"><i class="bi bi-eye"></i> 980</span>
+          </div>
+          <button class="btn-main">زيارة الموقع</button>
+        </div>
+
+        <div class="category-card">
+          <img src="website3.png" alt="موقع الأدوات">
+          <h5>موقع الأدوات المنزلية</h5>
+          <p>محتوى ومراجعات للمنتجات المنزلية الشائعة.</p>
+          <div class="price-views">
+          <!-- زر الإعجاب -->
+    <span class="like-btn"><i class="bi bi-heart"></i></span>
+            <span class="views"><i class="bi bi-eye"></i> 1,050</span>
+          </div>
+          <button class="btn-main">زيارة الموقع</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- حسابات التواصل الاجتماعي -->
+    <div class="category-section">
+      <div class="category-header">
+        <h5><i class="bi bi-people"></i> حسابات التواصل الاجتماعي</h5>
+        <button class="btn btn-main btn-sm">+ أضف حسابك</button>
+      </div>
+
+      <div class="category-content">
+        <!--
+        <div class="col-md-6 category-card no-content-card text-center">
+          <i class="bi bi-people"></i>
+          <h5>حسابات التواصل الاجتماعي</h5>
+          <p>لا توجد حسابات معتمدة حالياً</p>
+          <button class="btn btn-main">+ أضف حسابك الآن</button>
+        </div>
+        -->
+
+        <div class="category-card">
+          <img src="social1.png" alt="حساب تيك توك">
+          <h5>حساب تيك توك</h5>
+          <p>محتوى فيديو قصير ممتع ومتنوع.</p>
+          <div class="price-views">
+              <!-- زر الإعجاب -->
+    <span class="like-btn"><i class="bi bi-heart"></i></span>
+            <span class="views"><i class="bi bi-eye"></i> 1,250</span>
+          </div>
+          <button class="btn-main">زيارة الحساب</button>
+        </div>
+
+        <div class="category-card">
+          <img src="social2.png" alt="حساب انستغرام">
+          <h5>حساب إنستغرام</h5>
+          <p>صور ومحتوى جذاب لمتابعي الموضة.</p>
+          <div class="price-views">
+              <!-- زر الإعجاب -->
+    <span class="like-btn"><i class="bi bi-heart"></i></span>
+            <span class="views"><i class="bi bi-eye"></i> 980</span>
+          </div>
+          <button class="btn-main">زيارة الحساب</button>
+        </div>
+
+        <div class="category-card">
+          <img src="social3.png" alt="حساب يوتيوب">
+          <h5>حساب يوتيوب</h5>
+          <p>محتوى تعليمي وترفيهي متنوع.</p>
+          <div class="price-views">
+              <!-- زر الإعجاب -->
+    <span class="like-btn"><i class="bi bi-heart"></i></span>
+            <span class="views"><i class="bi bi-eye"></i> 1,050</span>
+          </div>
+          <button class="btn-main">زيارة الحساب</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- إعلانات خاصة -->
+    <div class="category-section">
+      <div class="category-header">
+        <h5><i class="bi bi-megaphone"></i> إعلانات خاصة</h5>
+        <button class="btn btn-main btn-sm">+ أضف إعلانك</button>
+      </div>
+
+      <div class="category-content">
+        <!--
+        <div class="col-md-6 category-card no-content-card text-center">
+          <i class="bi bi-megaphone"></i>
+          <h5>إعلانات خاصة</h5>
+          <p>لا توجد إعلانات خاصة معتمدة حالياً</p>
+          <button class="btn btn-main">+ أضف إعلانك الآن</button>
+        </div>
+        -->
+
+        <div class="category-card">
+          <img src="ad1.png" alt="إعلان ترويجي 1">
+          <h5>إعلان ترويجي 1</h5>
+          <p>الوصول إلى آلاف العملاء بسهولة وبشكل احترافي.</p>
+          <div class="price-views">
+              <!-- زر الإعجاب -->
+    <span class="like-btn"><i class="bi bi-heart"></i></span>
+            <span class="views"><i class="bi bi-eye"></i> 2,500</span>
+          </div>
+          <button class="btn-main">عرض الإعلان</button>
+        </div>
+
+        <div class="category-card">
+          <img src="ad2.png" alt="إعلان ترويجي 2">
+          <h5>إعلان ترويجي 2</h5>
+          <p>إعلان جذاب للوصول إلى جمهور أوسع بسرعة.</p>
+          <div class="price-views">
+             <!-- زر الإعجاب -->
+    <span class="like-btn"><i class="bi bi-heart"></i></span>
+            <span class="views"><i class="bi bi-eye"></i> 1,980</span>
+          </div>
+          <button class="btn-main">عرض الإعلان</button>
+        </div>
+
+        <div class="category-card">
+          <img src="ad3.png" alt="إعلان ترويجي 3">
+          <h5>إعلان ترويجي 3</h5>
+          <p>حملة إعلانية متكاملة للوصول إلى أكبر عدد من العملاء.</p>
+          <div class="price-views">
+              <!-- زر الإعجاب -->
+    <span class="like-btn"><i class="bi bi-heart"></i></span>
+            <span class="views"><i class="bi bi-eye"></i> 3,200</span>
+          </div>
+          <button class="btn-main">عرض الإعلان</button>
+        </div>
+
+      </div>
+    </div>
+      
+
+    <!-- Subcategories -->
+<section class="container-sections mb-4">
+  <div class="category-section">
+    <h5><i class="bi bi-grid"></i> الأقسام الفرعية</h5>
+    <div class="section-subcategories">
+      <button>منتجات</button>
+      <button>مطاعم</button>
+      <button>خدمات</button>
+      <button>ترفيه</button>
+    </div>
+  </div>
+</section>
+    
+<!-- Packages Section -->
+<section class="container-sections mb-4">
+  <div class="category-section">
+    <h5><i class="bi bi-card-checklist"></i> الباقات والأسعار</h5>
+    <div class="category-content">
+      <div class="category-card">
+        <h5>الباقة الأساسية</h5>
+        <p>الوصول إلى 50 إعلان + إدارة المحتوى + دعم أساسي.</p>
+        <div class="price-views">
+          <span class="price">350 ريال / شهر</span>
+        </div>
+        <button class="btn-main">اشتراك</button>
+      </div>
+      <div class="category-card">
+        <h5>الباقة المتقدمة</h5>
+        <p>الوصول إلى 200 إعلان + أدوات تسويق + دعم متميز.</p>
+        <div class="price-views">
+          <span class="price">650 ريال / شهر</span>
+        </div>
+        <button class="btn-main">اشتراك</button>
+      </div>
+      <div class="category-card">
+        <h5>الباقة الاحترافية</h5>
+        <p>إعلانات غير محدودة + إدارة متقدمة + دعم VIP.</p>
+        <div class="price-views">
+          <span class="price">1200 ريال / شهر</span>
+        </div>
+        <button class="btn-main">اشتراك</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="container-sections mb-4">
+  <div class="category-section">
+    <h5><i class="bi bi-question-circle"></i> الأسئلة الشائعة</h5>
+    <div class="faq-item">
+      <strong>كيف يمكنني إضافة متجر جديد؟</strong>
+      <p>يمكنك الضغط على زر "+ أضف متجرك" في قسم المتاجر واتباع الخطوات.</p>
+    </div>
+    <div class="faq-item">
+      <strong>هل يمكنني تعديل بيانات حسابي لاحقاً؟</strong>
+      <p>نعم، يمكنك تعديل بياناتك من صفحة الحساب الشخصي بعد تسجيل الدخول.</p>
+    </div>
+  </div>
+</section>
+
+    <!-- Ads / CTA Section -->
+    <section class="ads-section">
+      <h4>هل تريد إضافة إعلانك؟</h4>
+      <p>انضم إلى منصة سوقلي الآن وابدأ في الوصول إلى آلاف العملاء. الدفع مقدماً 350 ريال شهرياً + موافقة الإدارة مطلوبة.</p>
+      <div class="d-flex justify-content-center gap-2 mt-3">
+        <button class="btn btn-light">ابدأ الآن +</button>
+        <a href="#" class="btn btn-outline-light">تعرف على المزيد</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4">
+        <div class="modal-header" style="background:var(--main); color:#fff; border-bottom:0;">
+          <h5 class="modal-title"><i class="bi bi-box-arrow-in-right me-2"></i> تسجيل الدخول</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+        </div>
+        <div class="modal-body p-4">
+          <form>
+            <div class="mb-3">
+              <label for="loginEmail" class="form-label">البريد الإلكتروني</label>
+              <input type="email" class="form-control rounded-pill" id="loginEmail" placeholder="أدخل بريدك الإلكتروني">
+            </div>
+            <div class="mb-3">
+              <label for="loginPassword" class="form-label">كلمة المرور</label>
+              <input type="password" class="form-control rounded-pill" id="loginPassword" placeholder="أدخل كلمة المرور">
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div><input type="checkbox" id="rememberMe"> <label for="rememberMe">تذكرني</label></div>
+              <a href="#" class="text-decoration-none" style="color:var(--main)">نسيت كلمة المرور؟</a>
+            </div>
+            <button type="submit" class="btn btn-main w-100 rounded-pill">تسجيل الدخول</button>
+          </form>
+          <div class="text-center mt-3">
+            <span>ليس لديك حساب؟</span>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal" style="color:var(--main)">إنشاء حساب</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4">
+        <div class="modal-header" style="background:var(--main); color:#fff; border-bottom:0;">
+          <h5 class="modal-title"><i class="bi bi-person-plus me-2"></i> إنشاء حساب</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+        </div>
+        <div class="modal-body p-4">
+          <form>
+            <div class="mb-3">
+              <label for="registerName" class="form-label">الاسم الكامل</label>
+              <input type="text" class="form-control rounded-pill" id="registerName" placeholder="أدخل اسمك الكامل">
+            </div>
+            <div class="mb-3">
+              <label for="registerEmail" class="form-label">البريد الإلكتروني</label>
+              <input type="email" class="form-control rounded-pill" id="registerEmail" placeholder="أدخل بريدك الإلكتروني">
+            </div>
+            <div class="mb-3">
+              <label for="registerPassword" class="form-label">كلمة المرور</label>
+              <input type="password" class="form-control rounded-pill" id="registerPassword" placeholder="أدخل كلمة المرور">
+            </div>
+            <button type="submit" class="btn btn-main w-100 rounded-pill">إنشاء حساب</button>
+          </form>
+          <div class="text-center mt-3">
+            <span>لديك حساب بالفعل؟</span>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal" style="color:var(--main)">تسجيل الدخول</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Modal لاختيار طريقة الدفع -->
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">طرق الدفع المتاحة</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3">
+          <!-- بطاقة STC Pay -->
+          <div class="col-md-4">
+            <div class="card payment-card text-center h-100" data-method="stc">
+              <div class="card-body">
+                <i class="bi bi-phone-vibrate display-4 text-success"></i>
+                <h6 class="mt-2">STC Pay</h6>
+                <p class="account-number">4201322004543119</p>
+              </div>
+            </div>
+          </div>
+          <!-- بطاقة الراجحي -->
+          <div class="col-md-4">
+            <div class="card payment-card text-center h-100" data-method="rajhi">
+              <div class="card-body">
+                <i class="bi bi-bank display-4 text-primary"></i>
+                <h6 class="mt-2">الراجحي</h6>
+                <p class="account-number">571000010006086124397</p>
+              </div>
+            </div>
+          </div>
+          <!-- بطاقة Mobily Pay -->
+          <div class="col-md-4">
+            <div class="card payment-card text-center h-100" data-method="mobily">
+              <div class="card-body">
+                <i class="bi bi-sim display-4 text-warning"></i>
+                <h6 class="mt-2">Mobily Pay</h6>
+                <p class="account-number">4456870084488680</p>
+              </div>
+            </div>
+          </div>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Modal تفاصيل التحويل -->
+<div class="modal fade" id="transferModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">تفاصيل التحويل</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+      </div>
+      <div class="modal-body">
+        <p id="transferText" class="text-muted"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="container container-sections">
+      <div class="row">
+        <div class="col-md-3 footer-section">
+          <h6>سوقلي</h6>
+          <p>منصتك الشاملة لاكتشاف أفضل المتاجر والمواقع وحسابات التواصل الاجتماعي والإعلانات المميزة.</p>
+        </div>
+        <div class="col-md-3 footer-section">
+          <h6>روابط مهمة</h6>
+          <ul>
+            <li><a href="#" style="color:var(--main)">سياسة الخصوصية</a></li>
+            <li><a href="#" style="color:var(--main)">شروط الاستخدام</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 footer-section">
+          <h6>حسابات الدفع</h6>
+          <p>STC Pay: 4201322004543119</p>
+          <p>الراجحي: 571000010006086124397</p>
+          <p>Mobily Pay: 4456870084488680</p>
+        </div>
+        <div class="col-md-3 footer-section">
+          <h6>تواصل معنا</h6>
+          <p>0591522354</p>
+          <p>info@swqly1.com</p>
+          <p>واتساب: 0591522354</p>
+          <p>متاح من السبت إلى الخميس</p>
+          <p><a href="#" style="color:var(--main)">محادثة مباشرة</a> | <a href="#" style="color:var(--main)">نموذج التواصل</a></p>
+        </div>
+      </div>
+
+      <div class="text-center mt-3">
+        <p>© 2024 سوقلي. جميع الحقوق محفوظة.</p>
+        <p>عدد الزوار الإجمالي: ٢</p>
+      </div>
+    </div>
+  </footer>
+
+<!-- أيقونات التواصل الجانبية -->
+<div class="social-sidebar">
+  <a href="https://wa.me/966500000000" target="_blank" class="social-icon whatsapp">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+  <a href="mailto:info@souqly.com" class="social-icon email">
+    <i class="bi bi-envelope"></i>
+  </a>
+  <a href="sms:+966500000000" class="social-icon sms">
+    <i class="bi bi-chat-dots"></i>
+  </a>
+  <a href="https://t.me/username" target="_blank" class="social-icon telegram">
+    <i class="bi bi-telegram"></i>
+  </a>
+</div>
+
+
+  <!-- Bootstrap JS bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // فتح نافذة الدفع عند الضغط على أي زر "أضف ..."
+  document.querySelectorAll('.btn-main.btn-sm, #heroAddAdBtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      let modal = new bootstrap.Modal(document.getElementById('paymentModal'));
+      modal.show();
+    });
+  });
+
+  // عند اختيار بطاقة دفع
+  document.querySelectorAll('.payment-card').forEach(card => {
+    card.addEventListener('click', () => {
+      let method = card.getAttribute('data-method');
+      let text = "";
+
+      if(method === "stc") {
+        text = "يرجى التحويل عبر STC Pay إلى الرقم: 4201322004543119 ثم إرسال إشعار الدفع.";
+      } 
+      else if(method === "rajhi") {
+        text = "يرجى التحويل عبر بنك الراجحي إلى الحساب: 571000010006086124397.";
+      } 
+      else if(method === "mobily") {
+        text = "يرجى التحويل عبر Mobily Pay إلى الرقم: 4456870084488680.";
+      }
+
+      // عرض نافذة التفاصيل فوق نافذة الدفع
+      document.getElementById("transferText").innerText = text;
+      let transferModal = new bootstrap.Modal(document.getElementById('transferModal'));
+      transferModal.show();
+    });
+  });
+</script>
+
+
+<script>
+  document.querySelectorAll('.like-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('liked');
+      let icon = btn.querySelector('i');
+      if (btn.classList.contains('liked')) {
+        icon.classList.remove('bi-heart');
+        icon.classList.add('bi-heart-fill');
+      } else {
+        icon.classList.remove('bi-heart-fill');
+        icon.classList.add('bi-heart');
+      }
+    });
+  });
+</script>
+
+<!-- Custom JS -->
+<script>
+const recentItems = [
+  {name:'متجر الإلكترونيات', category:'متاجر', city:'صنعاء', img:'https://picsum.photos/320/180?random=1'},
+  {name:'موقع التعليم', category:'مواقع', city:'عدن', img:'https://picsum.photos/320/180?random=2'},
+  {name:'حساب انستجرام', category:'حسابات', city:'تعز', img:'https://picsum.photos/320/180?random=3'},
+  {name:'إعلان عقاري', category:'اعلانات', city:'حضرموت', img:'https://picsum.photos/320/180?random=4'},
+  {name:'مطعم الطيبة', category:'مطاعم', city:'صنعاء', img:'https://picsum.photos/320/180?random=5'}
+];
+
+function renderRecentItems(items){
+  const container = document.getElementById('recentContent');
+  container.innerHTML = '';
+  if(items.length===0){
+    container.innerHTML = '<div class="no-content-card"><i class="bi bi-x-circle"></i><h5>لا توجد نتائج</h5><p>حاول تعديل البحث أو الفئة</p></div>';
+    return;
+  }
+  items.forEach(item=>{
+    const card = document.createElement('div');
+    card.className='category-card';
+    card.innerHTML = `
+      <img src="${item.img}" alt="${item.name}">
+      <h5>${item.name}</h5>
+      <p>الفئة: ${item.category} ${item.city ? '- ' + item.city : ''}</p>
+       <div class="price-views">
+              <!-- زر الإعجاب -->
+    <span class="like-btn"><i class="bi bi-heart"></i></span>
+            <span class="views"><i class="bi bi-eye"></i> 3,200</span>
+          </div>
+      <button class="btn-main">زيارة </button>
+    `;
+    container.appendChild(card);
+  });
+}
+
+renderRecentItems(recentItems);
+
+document.getElementById('searchInput').addEventListener('input', function(){
+  const search = this.value.toLowerCase();
+  const filter = document.getElementById('categoryFilter').value;
+  const filtered = recentItems.filter(item=>{
+    const matchesName = item.name.toLowerCase().includes(search);
+    const matchesCat = filter==='all' || item.category===filter;
+    return matchesName && matchesCat;
+  });
+  renderRecentItems(filtered);
+});
+
+document.getElementById('categoryFilter').addEventListener('change', function(){
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const filter = this.value;
+  const filtered = recentItems.filter(item=>{
+    const matchesName = item.name.toLowerCase().includes(search);
+    const matchesCat = filter==='all' || item.category===filter;
+    return matchesName && matchesCat;
+  });
+  renderRecentItems(filtered);
+});
+</script>
+
+<script>
+  window.addEventListener("load", function() {
+    const preloader = document.getElementById("preloader");
+    setTimeout(() => {
+      preloader.classList.add("fade-out");
+    }, 1500); // مدة الانتظار (1.5 ثانية) قبل الإخفاء
+  });
+</script>
+
+</body>
+</html>
